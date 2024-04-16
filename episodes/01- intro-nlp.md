@@ -1,5 +1,5 @@
 
-1.	Introduction to NLP
+###1.	Introduction to NLP
 
 Questions:
 •	What are some common research applications of NLP?
