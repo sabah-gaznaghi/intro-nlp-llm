@@ -1,7 +1,7 @@
 
-### 1.	Introduction to NLP
+## 1.	Introduction to NLP
 
-## Objectives
+### Objectives
 
 Questions:
 
