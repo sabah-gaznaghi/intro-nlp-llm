@@ -1,14 +1,24 @@
 
 ### 1.	Introduction to NLP
 
+## Objectives
+
 Questions:
-•	What are some common research applications of NLP?
-•	What are the basic concepts and terminology of NLP?
-•	How can I acquire data for NLP tasks?
+
+ •	What are some common research applications of NLP?
+ 
+ •	What are the basic concepts and terminology of NLP?
+ 
+ •	How can I acquire data for NLP tasks?
+ 
 Objectives:
+
 •	Define natural language processing and its goals.
+
 •	Identify main research applications and challenges of NLP.
+
 •	Explain the basic concepts and terminology of NLP, such as tokens, lemmas, and n-grams.
+
 •	Use some popular datasets and libraries to acquire data for NLP tasks.
 
 
