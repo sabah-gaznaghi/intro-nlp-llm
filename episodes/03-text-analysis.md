@@ -1,5 +1,5 @@
 ---
-title: "Build a Convolutional Neural Network"
+title: "Text Analysis"
 teaching: 10
 exercises: 2
 ---
