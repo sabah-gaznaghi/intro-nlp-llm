@@ -12,11 +12,9 @@ This repository generates the corresponding lesson website from The Software Car
 The maintainers of this lesson are:
 - Sabah Gaznaghi
 - 
-- 
 
 ### Authors
 - Sabah Gaznaghi
-- 
 - 
 
 ### Citation
