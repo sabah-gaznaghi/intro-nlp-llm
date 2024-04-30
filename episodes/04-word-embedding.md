@@ -1,5 +1,5 @@
 ---
-title: 'Compile and Train (Fit) a Convolutional Neural Network'
+title: 'Word Embedding'
 teaching: 10
 exercises: 2
 ---
