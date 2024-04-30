@@ -1,5 +1,5 @@
 ---
-title: 'Introduction to Image Data'
+title: 'Introduction to Text Preprocessing'
 teaching: 10
 exercises: 2
 ---
