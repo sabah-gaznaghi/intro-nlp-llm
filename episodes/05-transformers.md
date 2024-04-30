@@ -1,5 +1,5 @@
 ---
-title: 'Evaluate a Convolutional Neural Network and Make Predictions (Classifications)'
+title: '5.	Transformers for Natural Language Processing'
 teaching: 10
 exercises: 2
 ---
