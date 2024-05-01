@@ -106,6 +106,8 @@ Guess the following architecture belongs to which optimization strategy:
 
 ![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/9abb1cc9-9b10-4636-994a-ff55b017349c)
 
+Figure. LLMs optimization (source)
+
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: Discussion
@@ -180,7 +182,7 @@ In this few-shot example, we provide the model with three question-answer pairs 
 To summarize this approach in a few steps, fill in the following gaps:
 1.	Choose a Model: Select a **---** model from Hugging Face that suits your task.
    
-2.	Load the Model: Use the **---*** function to load the model and tokenizer.
+2.	Load the Model: Use the **---** function to load the model and tokenizer.
   
 3.	Craft Your Prompt: Write a **---** that includes one or more examples, depending on whether you’re doing one-shot or few-shot prompting.
   
@@ -193,7 +195,7 @@ To summarize this approach in a few steps, fill in the following gaps:
 
 1.	Choose a Model: Select a **pre-trained** model from Hugging Face that suits your task.
    
-2.	Load the Model: Use the **pipeline*** function to load the model and tokenizer.
+2.	Load the Model: Use the **pipeline** function to load the model and tokenizer.
   
 3.	Craft Your Prompt: Write a **prompt** that includes one or more examples, depending on whether you’re doing one-shot or few-shot prompting.
   
