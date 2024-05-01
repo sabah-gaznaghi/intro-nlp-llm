@@ -29,7 +29,7 @@ We have covered a vast landscape of NLP, starting with the basics and moving tow
 
 To reinforce our understanding, let’s engage in the following activity:
 
-::::::::::::::::::::::::::::::::::::::::: Discussion 
+::::::::::::::::::::::::::::::::::::: challenge
 
 ## Discuss in groups. Share insights on how NLP can be applied in your field of interest  
 
@@ -80,7 +80,7 @@ J: Lemmatization
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::: Discussion 
+::::::::::::::::::::::::::::::::::::: challenge
 
 ## Discuss in groups. Share insights on how NLP can be applied in your field of interest.
 
@@ -100,7 +100,9 @@ J: Lemmatization
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::: Challenge 
+Now
+
+::::::::::::::::::::::::::::::::::::: challenge
 
 ## Challenge Using an LLM (Mini-Project)
 Context Example: Environmental science and climate change
