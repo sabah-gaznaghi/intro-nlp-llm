@@ -57,164 +57,170 @@ What is DSL and why are they useful for research tasks? Think of some examples o
 ![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/6e5a6a74-eaa2-430d-b5b5-8198716fb4f7)
 
 
+::::::::::::::::::::::::::::::::::::::::::::::::
 
+### 7.2.	Prompting
 
-A: Stemming
-B: Word2Vec	
-C: Text Preprocessing	
-D: Part-of-Speech Tagging	
-E: Stop-words Removal	
-F: Transformers	
-G: Bag of Words	
-H: Tokenization	
-I: BERT	
-J: Lemmatization
+For research applications where highly reliable answers are crucial, Prompt Engineering combined with Retrieval-Augmented Generation (RAG) is often the most suitable approach. This combination allows for flexibility and high-quality outputs by leveraging both the generative capabilities of LLMs and the precision of domain-specific data sources:
 
+```python
+Install the Hugging Face libraries
+!pip install transformers datasets
 
-```
-1.	“A statistical approach to modeling the meaning of words based on their context.”
-[ ] A - [ ] B - [ ] C - [ ] D - [ ] E - [ ] F - [ ] G - [ ] H - [ ] I - [ ] J
+from transformers import pipeline
 
-2.	“A process of reducing words to their root form, enabling the analysis of word frequency.”
-[ ] A - [ ] B - [ ] C - [ ] D - [ ] E - [ ] F - [ ] G - [ ] H - [ ] I - [ ] J
+# Initialize the zero-shot classification pipeline
+classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
 
-3.	“An algorithm that uses neural networks to understand the relationships and meanings in human language.”
-[ ] A - [ ] B - [ ] C - [ ] D - [ ] E - [ ] F - [ ] G - [ ] H - [ ] I - [ ] J
+# Example research question
+question = "What is the role of CRISPR-Cas9 in genome editing?"
 
-4.	“A technique for identifying the parts of speech for each word in a given sentence.”
-[ ] A - [ ] B - [ ] C - [ ] D - [ ] E - [ ] F - [ ] G - [ ] H - [ ] I - [ ] J
+# Candidate topics to classify the question
+topics = ["Biology", "Technology", "Healthcare", "Genetics", "Ethics"]
 
-5.	“A method for cleaning and preparing text data before analysis.”
-[ ] A - [ ] B - [ ] C - [ ] D - [ ] E - [ ] F - [ ] G - [ ] H - [ ] I - [ ] J
+# Perform zero-shot classification
+result = classifier(question, candidate_labels=topics)
 
-6.	“A library that provides tools for machine learning and statistical modeling.”
-[ ] A - [ ] B - [ ] C - [ ] D - [ ] E - [ ] F - [ ] G - [ ] H - [ ] I - [ ] J
-
-7.	“A model that predicts the next word in a sentence based on the words that come before it.”
-[ ] A - [ ] B - [ ] C - [ ] D - [ ] E - [ ] F - [ ] G - [ ] H - [ ] I - [ ] J
-
-8.	“A framework for building and training neural networks to understand and generate human language.”
-[ ] A - [ ] B - [ ] C - [ ] D - [ ] E - [ ] F - [ ] G - [ ] H - [ ] I - [ ] J
-
-9.	“A technique that groups similar words together in vector space.”
-[ ] A - [ ] B - [ ] C - [ ] D - [ ] E - [ ] F - [ ] G - [ ] H - [ ] I - [ ] J
-
-10.	“A method for removing commonly used words that carry little meaning.”
-[ ] A - [ ] B - [ ] C - [ ] D - [ ] E - [ ] F - [ ] G - [ ] H - [ ] I - [ ] J
+# Output the results
+print(f"Question: {question}")
+print("Classified under topics with the following scores:")
+for label, score in zip(result['labels'], result['scores']):
+print(f"{label}: {score:.4f}")
 
 ```
+
+::::::::::::::::::::::::::::::::::::::::: spoiler 
+
+## Heads-up: Be careful when fine-tuning a model
+
+When fine-tuning a BERT model from Hugging Face, for instance, it is essential to approach the process with precision and care. Begin by thoroughly understanding **BERT’s architecture** and the specific task at hand to select the most suitable model variant and hyperparameters. **Prepare your dataset** meticulously, ensuring it is clean, well-represented, and split correctly to avoid **data leakage and overfitting**. Hyperparameter selection, such as learning rates and batch sizes, should be made with consideration, and **regularization** techniques like dropout should be employed to enhance the model’s ability to generalize. **Evaluate** the model’s performance using appropriate metrics and address any class imbalances with weighted loss functions or similar strategies. Save checkpoints to preserve progress and document every step of the fine-tuning process for transparency and reproducibility. **Ethical considerations** are paramount; strive for a model that is fair and unbiased. Ensure compliance with data protection regulations, especially when handling sensitive information. Lastly, manage **computational resources** wisely and engage with the Hugging Face community for additional support. Fine-tuning is iterative, and success often comes through continuous experimentation and learning.
+
+::::::::::::::::::::::::::::::::::::::::::::::
+
+
+::::::::::::::::::::::::::::::::::::: Discussion
+
+## Discuss in groups. 
+
+Guess the following architecture belongs to which optimization strategy:
+
+![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/9abb1cc9-9b10-4636-994a-ff55b017349c)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: Discussion
 
-## Discuss in groups. Share insights on how NLP can be applied in your field of interest.
+## Discuss in groups. 
 
+What are the challenges and trade-offs of domain-specific LLMs, such as data availability, model size, and complexity? Consider some of the factors that affect the quality and reliability of domain-specific LLMs, such as the amount and quality of domain-specific data, the computational resources and time required for training or fine-tuning, and the generalization and robustness of the model. How do these factors pose problems or difficulties for domain-specific LLMs and how can we overcome them?
 
-:::::::::::::::::::::::: solution 
-
-#### Field of Interest: Environmental Science
-•	NLP for Climate Change Research: How can NLP help in analyzing large volumes of research papers on climate change to identify trends and gaps in the literature?
-•	Social Media Analysis for Environmental Campaigns: Discuss the use of sentiment analysis to gauge public opinion on environmental policies.
-•	Automating Environmental Compliance: Share insights on how NLP can streamline the process of checking compliance with environmental regulations in corporate documents.
-
-#### Field of Interest: Education
-•	Personalized Learning: Explore the potential of NLP in creating personalized learning experiences by analyzing student feedback and performance.
-•	Content Summarization: Discuss the benefits of using NLP to summarize educational content for quick revision.
-•	Language Learning: Share thoughts on the role of NLP in developing language learning applications that adapt to the learner’s proficiency level.
-
-:::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+::::::::::::::::::::::::::::::::::::: Discussion
+
+## Discuss in groups. 
+
+What are some available approaches for creating domain-specific LLMs, such as fine-tuning and knowledge distillation? Consider some of the main steps and techniques for creating domain-specific LLMs, such as selecting a general LLM, collecting and preparing domain-specific data, training or fine-tuning the model, and evaluating and deploying the model. How do these approaches differ from each other and what are their advantages and disadvantages?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+### Example:
+Now let’s try One-shot and Few-shot prompting examples and see how it can help us to enhance the sensitivity of the LLM to our field of study: One-shot prompting involves providing the model with a single example to follow. It’s like giving the model a hint about what you expect. We will go through an example using Hugging Face’s transformers library:
+
+```python
+from transformers import pipeline
+
+# Load a pre-trained model and tokenizer
+model_name = "gpt2"
+generator = pipeline('text-generation', model=model_name)
+
+# One-shot example
+prompt = "Translate 'Hello, how are you?' to French:\nBonjour, comment ça va?\nTranslate 'I am learning new things every day' to French:"
+result = generator(prompt, max_length=100)
+
+# Output the result
+print(result[0]['generated_text'])
+```
+
+In this example, we provide the model with one translation example and then ask it to translate a new sentence. The model uses the context from the one-shot example to generate the translation. But what if we have a Few-Shot Prompting? Few-shot prompting gives the model several examples to learn from. This can improve the model’s ability to understand and complete the task. Here is how you can implement few-shot prompting:
+
+```python
+from transformers import pipeline
+
+# Load a pre-trained model and tokenizer
+model_name = "gpt2"
+generator = pipeline('text-generation', model=model_name)
+
+# Few-shot examples
+prompt = """\
+Q: What is the capital of France?
+A: Paris.
+
+Q: What is the largest mammal?
+A: Blue whale.
+
+Q: What is the human body's largest organ?
+A: The skin.
+
+Q: What is the currency of Japan?
+A:"""
+result = generator(prompt, max_length=100)
+
+# Output the result
+print(result[0]['generated_text'])
+```
+
+In this few-shot example, we provide the model with three question-answer pairs before posing a new question. The model uses the pattern it learned from the examples to answer the new question.
 
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge Using an LLM (Mini-Project)
-Context Example: Environmental science and climate change
-Using Hugging Face model distilbert-base-uncased and Few-Shot Prompting: To improve the model’s performance in answering field-specific questions, we will use few-shot prompting by providing examples of questions and answers related to environmental topics.
+## Challenge
 
-```python
-from transformers import pipeline
-# Initialize the question-answering pipeline with DistilBERT
-qa_pipeline = pipeline('question-answering', model='distilbert-base-uncased')
+To summarize this approach in a few steps, fill in the following gaps:
+1.	Choose a Model: Select a **---** model from Hugging Face that suits your task.
+   
+2.	Load the Model: Use the **---*** function to load the model and tokenizer.
+  
+3.	Craft Your Prompt: Write a **---** that includes one or more examples, depending on whether you’re doing one-shot or few-shot prompting.
+  
+4.	Generate Text: Call the **---** with your prompt to generate the **---**.
+  
+5.	Review the Output: Check the generated text to see if the model followed the **---** correctly.
 
-# Few-shot prompting with examples
-context = """
-Question: What is the greenhouse effect?
-Answer: The greenhouse effect is a natural process that warms the Earth's surface.
 
-Question: How can we reduce carbon emissions?
-Answer: We can reduce carbon emissions by using renewable energy sources, improving energy efficiency, and planting trees.
-
-Question: What are the consequences of deforestation?
-Answer: Deforestation can lead to loss of biodiversity, increased greenhouse gas emissions, and disruption of water cycles.
-"""
-
-# User's field-specific question
-user_question = "What can individuals do to combat climate change?"
-
-# Prepare the prompt for the model
-prompt = {
-    'context': context,
-    'question': user_question
-}
-
-# Get the answer from the model
-response = qa_pipeline(prompt)
-print(response['answer'])
-```
 :::::::::::::::::::::::: solution 
 
-The model should provide a relevant answer based on the few-shot examples provided. For instance, it might say: “Individuals can combat climate change by reducing their carbon footprint, using less energy, recycling, and supporting eco-friendly policies.” In this challenge, we used the **distilbert-base-uncased** model from Hugging Face’s transformers library to create a question-answering system. Few-shot prompting was employed to give the model context about environmental topics, which helps it generate more accurate answers to user queries. The **qa_pipeline** function is used to pass the prompt to the model, which then processes the information and returns an answer to the user’s question. This mini-project showcases how LLMs can be fine-tuned to specific fields of interest, providing valuable assistance in answering domain-specific queries.
+1.	Choose a Model: Select a **pre-trained** model from Hugging Face that suits your task.
+   
+2.	Load the Model: Use the **pipeline*** function to load the model and tokenizer.
+  
+3.	Craft Your Prompt: Write a **prompt** that includes one or more examples, depending on whether you’re doing one-shot or few-shot prompting.
+  
+4.	Generate Text: Call the **generator** with your prompt to generate the **output**.
+  
+5.	Review the Output: Check the generated text to see if the model followed the **examples** correctly.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-### 8.2.	Further Resources
 
-For continued learning, here are detailed resources:
-•	Natural Language Processing Specialization (Coursera): A series of courses that cover NLP foundations, algorithms, and how to build NLP applications.
-•	Stanford NLP Group: Access to pioneering NLP research, datasets, and tools like Stanford Parser and Stanford POS Tagger.
-•	Hugging Face: A platform for sharing and collaborating on ML models, with a focus on democratizing NLP technologies.
-•	Kaggle: An online community for data scientists, offering datasets, notebooks, and competitions to practice and improve your NLP skills.
-Each resource is a gateway to further knowledge, community engagement, and hands-on experience.
+::::::::::::::::::::::::::::::::::::::::: spoiler 
 
+## Heads-up: Prompting Quality
 
-### 8.3.	Feedback
+Remember, the quality of the output heavily depends on the quality and relevance of the examples you provide. It’s also important to note that larger models tend to perform better at these tasks due to their greater capacity to understand and generalize from examples.
 
-Please help us improve by answering the following survey questions:
-1.	How would you rate the overall quality of the workshop?
-   
-[ ] Excellent,  [ ] Good,  [ ] Average,  [ ] Below Average,  [ ] Poor
-
-
-2.	Was the pace of the workshop appropriate?
-   
-[ ] Too fast,     [ ] Just right,     [ ] Too slow
-
-
-3.	How clear were the instructions and explanations?
-   
-[ ] Very clear,     [ ] Clear,     [ ] Somewhat clear,      [ ] Not clear
-
-
-4.	What was the most valuable part of the workshop for you?
-   
-
-5.	How can we improve the workshop for future participants?
-
-
-Your feedback is crucial for us to evolve and enhance the learning experience.
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-•	Various NLP techniques from preprocessing to advanced LLMs are reviewed.
-•	NLPs’ transformative potential provides real-world applications in diverse fields.
-•	Few-shot learning can enhance the performance of LLMs for specific field of research. 
-•	Valuable resources are highlighted for continued learning and exploration in the field of NLP.
+- Domain-specific LLMs are essential for tasks that require specialized knowledge.
+- Prompt engineering, RAG, fine-tuning, and training from scratch are viable approaches to create DSLs.
+- A mixed prompting-RAG approach is often preferred for its balance between performance and resource efficiency.
+- Training from scratch offers the highest quality output but requires significant resources.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-<!-- Collect your link references at the bottom of your document -->to other hyperparameters, the choice of optimizer depends on the problem you are trying to solve, your model architecture, and your data. Adam is a good starting point though, which is why we chose it. Adam has a number of parameters, but the default values work well for most problems so we will use it with its default parameters.
+<!-- Collect your link references at the bottom of your document -->
