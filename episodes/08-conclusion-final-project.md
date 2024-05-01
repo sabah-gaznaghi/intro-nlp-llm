@@ -160,15 +160,15 @@ Each resource is a gateway to further knowledge, community engagement, and hands
 Please help us improve by answering the following survey questions:
 1.	How would you rate the overall quality of the workshop?
    
-[ ] Excellent    [ ] Good    [ ] Average    [ ] Below Average    [ ] Poor
+[ ] Excellent,  [ ] Good,  [ ] Average,  [ ] Below Average,  [ ] Poor
 
 2.	Was the pace of the workshop appropriate?
    
-[ ] Too fast     [ ] Just right     [ ] Too slow
+[ ] Too fast,     [ ] Just right,     [ ] Too slow
 
 3.	How clear were the instructions and explanations?
    
-[ ] Very clear     [ ] Clear     [ ] Somewhat clear      [ ] Not clear
+[ ] Very clear,     [ ] Clear,     [ ] Somewhat clear,      [ ] Not clear
 
 
 4.	What was the most valuable part of the workshop for you?
