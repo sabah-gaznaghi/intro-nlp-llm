@@ -34,16 +34,30 @@ To supplement the LLM’s generative capabilities with information retrieved fro
 To adapt a general-purpose LLM to excel at a specific task or within a particular domain. Language Modeling Task Fine-Tuning: This involves training the LLM on a large corpus of text to improve its ability to predict the next word or phrase in a sentence. Example: An LLM fine-tuned on legal documents would become better at generating text that resembles legal writing. Supervised Q&A Fine-Tuning: Here, the LLM is trained on a dataset of question-answer pairs to enhance its performance on Q&A tasks.
 Example: An LLM fine-tuned with medical Q&A pairs would provide more accurate responses to health-related inquiries.
 
-####4.	Training from Scratch: 
+#### 4.	Training from Scratch: 
 Builds a model specifically for a domain, using relevant data from the ground up.
 
 
+::::::::::::::::::::::::::::::::::::: Discussion
 
-To reinforce our understanding, let’s engage in the following activity:
+## Discuss in groups. 
+
+Which approach do you think is more computation-intensive? Which is more accurate? How are these qualities related?  Evaluate the trade-offs between fine-tuning and other approaches.
+
+![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/7526be09-de4d-4c59-b6df-93f0d2dca9d7)
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: Discussion
 
-## Discuss in groups. Share insights on how NLP can be applied in your field of interest  
+## Discuss in groups. 
+
+What is DSL and why are they useful for research tasks? Think of some examples of NLP tasks that require domain-specific LLMs, such as literature review, patent analysis, or material discovery. How do domain-specific LLMs improve the performance and accuracy of these tasks?
+
+![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/6e5a6a74-eaa2-430d-b5b5-8198716fb4f7)
+
+
+
 
 A: Stemming
 B: Word2Vec	
