@@ -163,11 +163,9 @@ Please help us improve by answering the following survey questions:
 [ ] Excellent,  [ ] Good,  [ ] Average,  [ ] Below Average,  [ ] Poor
 
 
-
 2.	Was the pace of the workshop appropriate?
    
 [ ] Too fast,     [ ] Just right,     [ ] Too slow
-
 
 
 3.	How clear were the instructions and explanations?
@@ -175,11 +173,8 @@ Please help us improve by answering the following survey questions:
 [ ] Very clear,     [ ] Clear,     [ ] Somewhat clear,      [ ] Not clear
 
 
-
-
 4.	What was the most valuable part of the workshop for you?
    
-
 
 5.	How can we improve the workshop for future participants?
 
