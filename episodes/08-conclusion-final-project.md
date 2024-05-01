@@ -84,7 +84,9 @@ J: Lemmatization
 
 ## Discuss in groups. Share insights on how NLP can be applied in your field of interest.
 
+
 :::::::::::::::::::::::: solution 
+
 #### Field of Interest: Environmental Science
 •	NLP for Climate Change Research: How can NLP help in analyzing large volumes of research papers on climate change to identify trends and gaps in the literature?
 •	Social Media Analysis for Environmental Campaigns: Discuss the use of sentiment analysis to gauge public opinion on environmental policies.
@@ -94,6 +96,7 @@ J: Lemmatization
 •	Personalized Learning: Explore the potential of NLP in creating personalized learning experiences by analyzing student feedback and performance.
 •	Content Summarization: Discuss the benefits of using NLP to summarize educational content for quick revision.
 •	Language Learning: Share thoughts on the role of NLP in developing language learning applications that adapt to the learner’s proficiency level.
+
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -134,9 +137,12 @@ response = qa_pipeline(prompt)
 print(response['answer'])
 ```
 :::::::::::::::::::::::: solution 
+
 The model should provide a relevant answer based on the few-shot examples provided. For instance, it might say: “Individuals can combat climate change by reducing their carbon footprint, using less energy, recycling, and supporting eco-friendly policies.” In this challenge, we used the **distilbert-base-uncased** model from Hugging Face’s transformers library to create a question-answering system. Few-shot prompting was employed to give the model context about environmental topics, which helps it generate more accurate answers to user queries. The **qa_pipeline** function is used to pass the prompt to the model, which then processes the information and returns an answer to the user’s question. This mini-project showcases how LLMs can be fine-tuned to specific fields of interest, providing valuable assistance in answering domain-specific queries.
+
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
 ### 8.2.	Further Resources
 
 For continued learning, here are detailed resources:
