@@ -24,450 +24,242 @@ exercises: 2
 
 
 
-### Step 5. Choose a loss function and optimizer and compile model
 
-We have designed a convolutional neural network (CNN) that in theory we should be able to train to classify images. 
+### 5.1.	Introduction to Artificial Neural Networks
 
-We now need to **compile** the model, or set up the rules and strategies for how the network will learn. To do this, we select an appropriate loss function and optimizer to use during training (fitting). 
+We have discussed how tokenization works and how it is important in text analysis. For making robust and reliable NLP models we need to extract features from the text by using text embeddings. To understand this concept, we first talk about vector space. Vector space models represent text data as vectors, which can be used in various machine learning algorithms. Embeddings are dense vectors that capture the semantic meanings of words based on their context. 
 
-Recall how we compiled our model in the introduction:
-```
-## compile the model
-#model_intro.compile(optimizer = 'adam', 
-#                    loss = keras.losses.CategoricalCrossentropy(), 
-#                    metrics = ['accuracy'])
-```              
+![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/38e4c636-1bd9-46c9-a7f9-9522f1cadad7)
 
-#### Loss function
 
-The **loss function** tells the training algorithm how wrong, or how 'far away' from the true value the predicted value is. The purpose of loss functions is to compute the quantity that a model should seek to minimize during training. Which class of loss functions you choose depends on your task. 
+::::::::::::::::::::::::::::::::::::: Activity
 
-**Loss for classification**
+Now let’s move the following text boxes toward their right places in the ANN architecture and add the correct label to each one:
 
-For classification purposes, there are a number of probabilistic losses to choose from. We chose `CategoricalCrossentropy` because we want to compute the crossentropy loss between our one-hot encoded class labels and the model predictions. This loss function is appropriate to use when the data has two or more label classes.
+![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/01097431-d114-48ce-9de5-552cb0c9596f)
 
-The loss function is defined by the `tf.keras.losses.CategoricalCrossentropy` class.
 
-More information about loss functions can be found in the Keras [loss documentation].
+When we talk about ANNs, we also talk about their parameters. But what are parameters? Let’s draw a small neural network with 3 following layers: x1
+Input Layer: 3 neurons
+Hidden Layer: 4 neurons
+Output Layer: 1 neurons
 
-
-#### Optimizer
-
-Somewhat coupled to the loss function is the **optimizer**. The optimizer here refers to the algorithm with which the model learns to optimize on the provided loss function.
-
-We need to choose which optimizer to use and, if this optimizer has parameters, what values to use for those. Furthermore, we specify how many times to present the training samples to the optimizer. In other words, the optimizer is responsible for taking the output of the loss function and then applying some changes to the weights within the network. It is through this process that the “learning” (adjustment of the weights) is achieved.
-
-```
-## compile the model
-#model_intro.compile(optimizer = 'adam', 
-#                    loss = keras.losses.CategoricalCrossentropy(), 
-#                    metrics = ['accuracy'])
-``` 
-
-**Adam** 
-
-Here we picked one of the most common optimizers demonstrated to work well for most tasks, the **Adam** optimizer. Similar to other hyperparameters, the choice of optimizer depends on the problem you are trying to solve, your model architecture, and your data. Adam is a good starting point though, which is why we chose it. Adam has a number of parameters, but the default values work well for most problems so we will use it with its default parameters.
-
-It is defined by the `keras.optimizers.Adam` class and takes a single parameter `learning_rate=0.01`
-
-**Learning rate** is a hyperparameter that determines the step size at which the model's weights are updated during training. You can think of like the pace of learning for your model because it's basically how big (or small) a step your model takes to learn from its mistakes. Too high, and it might overshoot the optimal values; too low, and it might take forever to learn.
-
-The learning rate may be fixed and remain constant throughout the entire training process or it may be adaptive and dynamically change during training.
-
-The [optimizer documentation] describes the optimizers to choose. A couple more popular or famous ones include:
-
-- **Stochastic Gradient Descent (sgd)**: Stochastic Gradient Descent (SGD) is one of the fundamental optimization algorithms used to train machine learning models, especially neural networks. It is a variant of the gradient descent algorithm, designed to handle large datasets efficiently.
-
-- **Root Mean Square (rms)prop**: RMSprop is widely used in various deep learning frameworks and is one of the predecessors of more advanced optimizers like Adam, which further refines the concept of adaptive learning rates. It is an extension of the basic Stochastic Gradient Descent (SGD) algorithm and addresses some of the challenges of SGD.
-
-  - For example, one of the main issues with the basic SGD is that it uses a fixed learning rate for all model parameters throughout the training process. This fixed learning rate can lead to slow convergence or divergence (over-shooting) in some cases. RMSprop introduces an adaptive learning rate mechanism to address this problem.
-
-::::::::::::::::::::::::::::::::::::::::: spoiler 
-
-## WANT TO KNOW MORE: Learning Rate
-
-ChatGPT
-
-**Learning rate** is a hyperparameter that determines the step size at which the model's parameters are updated during training. A higher learning rate allows for more substantial parameter updates, which can lead to faster convergence, but it may risk overshooting the optimal solution. On the other hand, a lower learning rate leads to smaller updates, providing more cautious convergence, but it may take longer to reach the optimal solution. Finding an appropriate learning rate is crucial for effectively training machine learning models.
-
-The figure below illustrates a small learning rate will not traverse toward the minima of the gradient descent algorithm in a timely manner, i.e. number of epochs.
-
-![Small learning rate leads to inefficient approach to loss minima](https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooSmall.svg "Small learning rate leads to inefficient approach to loss minima"){alt='Plot of loss over weight value illustrating how a small learning rate takes a long time to reach the optimal solution.'}
-
-On the other hand, specifying a learning rate that is *too high* will result in a loss value that never approaches the minima. That is, 'bouncing between the sides', thus never reaching a minima to cease learning.
-
-![A large learning rate results in overshooting the gradient descent minima](https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooLarge.svg){alt='Plot of loss over weight value illustrating how a large learning rate never approaches the optimal solution because it bounces between the sides.'}
-
-Finally, a modest learning rate will ensure that the product of multiplying the scalar gradient value and the learning rate does not result in too small steps, nor a chaotic bounce between sides of the gradient where steepness is greatest.
-
-![An optimal learning rate supports a gradual approach to the minima](https://developers.google.com/static/machine-learning/crash-course/images/LearningRateJustRight.svg){alt='Plot of loss over weight value illustrating how a good learning rate gets to optimal solution gradually.'}
-
-These images were obtained from [Google Developers Machine Learning Crash Course] and is licenced under the [Creative Commons 4.0 Attribution Licence].
-
-::::::::::::::::::::::::::::::::::::::::::::::
-
-
-#### Metrics
-
-After we select the desired optimizer and loss function we specify the metric(s) to be evaluated by the model during training and testing. A **metric** is a function used to judge the performance of your model.
-
-```
-## compile the model
-#model_intro.compile(optimizer = 'adam', 
-#                    loss = keras.losses.CategoricalCrossentropy(), 
-#                    metrics = ['accuracy']) 
-```
-
-Metric functions are similar to loss functions, except the results from evaluating a metric are not used when training the model. Note you are able to use any loss function as a metric.
-
-Typically, for classification problems, you will use `accuracy`, which calculates how often the model predictions match the true labels.
-
-The accuracy function creates two local variables, total and count, that it uses to compute the frequency with which predictions matches labels. This frequency is ultimately returned as accuracy: an operation that divides the  total by count.
-
-The Keras [metrics] documentation provides a list of potential metrics.
-
-Now that we selected which loss function, optimizer, and metric to use, we compile the model using `model.compile`. Compiling the model prepares it for training.
-
-
-### Step 6. Train (Fit) model
-
-We are ready to train the model.
-
-Training the model is done using the `fit` method. It takes the image data and target (label) data as inputs and has several other parameters for certain options of the training. Here we only set a different number of epochs.
-
-A training **epoch** means that every sample in the training data has been given to the neural network and used to update its parameters. In general, CNN models improve with more epochs of training, but only to a point.
-
-We want to train our model for 10 epochs:
-
-```python
-# fit the model
-history_intro = model_intro.fit(train_images, train_labels, 
-                                epochs = 10, 
-                                validation_data = (val_images, val_labels),
-                                batch_size = 32)
-```
-
-The `batch_size` parameter defaults to 32. The **batch size** is an important hyperparameter that determines the number of training samples processed together before updating the model's parameters during each iteration (or mini-batch) of training.
-
-In general, smaller batch sizes may require more iterations to cover the entire dataset, which can lead to longer training times. Larger batch sizes contribute to a smoother learning process, i.e. more consistent updates to the model's parameters, but might not generalise well to new, unseen data.
-
-Note we are also creating a new variable `history_intro` to capture the history of the training in order to extract metrics we will use for model evaluation.
-
-Other arguments used to fit our model can be found in the documentation for the [fit method].
- 
-
-::::::::::::::::::::::::::::::::::::::::: spoiler 
-
-## WANT TO KNOW MORE: Batch size
-
-ChatGPT
-
-
-The choice of batch size can have various implications, and there are situations where using different batch sizes can be beneficial. There is no one-size-fits-all answer.
-
-**Large Datasets and Memory Constraints**: If you have a large dataset and limited memory, using a smaller batch size can help fit the data into memory during training. This allows you to train larger models or use more complex architectures that might not fit with larger batch sizes.
-
-**Training on GPUs**: Modern deep learning frameworks and libraries are optimized for parallel processing on GPUs. Using larger batch sizes can fully leverage the parallelism of GPUs and lead to faster training times. However, the choice of batch size should consider the available GPU memory.
-
-**Noise in Parameter Updates**: Smaller batch sizes introduce more noise in the gradients, which can help models escape sharp minima and potentially find better solutions. This regularization effect is similar to the impact of stochasticity in Stochastic Gradient Descent (SGD).
-
-**Generalization**: Using smaller batch sizes may improve the generalization of the model. It prevents the model from overfitting to the training data, as it gets updated more frequently and experiences more diverse samples during training.
-
-It's essential to consider the trade-offs of using different batch sizes. While larger batch sizes may provide more stable gradients during training, there could be a trade-off where the model might not generalise as effectively to new, unseen data. It's a common consideration in machine learning to find a balance between stable training and the ability to generalize well to diverse examples. You should experiment with different batch sizes to find the best-performing one for your specific model, architecture, and dataset.
-
-:::::::::::::::::::::::::::::::::::::::::::::::
-
-
-#### Monitor Training Progress (aka Model Evaluation during Training)
-
-We now know more about the compilation and fitting of CNNs. Let us inspect the training metrics for our model.
-
-Using seaborn, we can plot the training process using the history:
-
-```python
-import seaborn as sns
-import pandas as pd
-
-# convert the history to a dataframe for plotting 
-history_intro_df = pd.DataFrame.from_dict(history_intro.history)
-
-# plot the loss and accuracy from the training process
-fig, axes = plt.subplots(1, 2)
-fig.suptitle('cifar_model_intro')
-sns.lineplot(ax=axes[0], data=history_intro_df[['loss', 'val_loss']])
-sns.lineplot(ax=axes[1], data=history_intro_df[['accuracy', 'val_accuracy']])
-```
-
-![](fig/04_model_intro_accuracy_loss.png){alt='two panel figure; the figure on the left illustrates the training loss starting at 1.5 and decreasing to 0.7 and the validation loss decreasing from 1.3 to 1.0 before leveling out; the figure on the right illustrates the training accuracy increasing from 0.45 to 0.75 and the validation accuracy increasing from 0.53 to 0.65 before leveling off'}
-
-This plot is used to identify whether the training is well configured or whether there are problems to address. The solid blue lines represent the training loss and accuracy; the dashed orange lines represent the validation loss and accuracy.
-
-::::::::::::::::::::::::::::::::::::: challenge 
-
-## CHALLENGE Inspect the Training Curve
-
-Inspect the training curves we have just made and recall the difference between the training and the validation datasets.
-
-1. How does the training progress look?
-
-- Does the loss increase or decrease?
-- What about the accuracy?
-- Do either change fast or slowly?
-- Do the graphs lines fluctuate or go up and down frequently?
-
-2. Do you think the resulting trained network will work well on the test set?
+•	Connect each neuron in the input layer to every neuron in the hidden layer (next layer). How many connections (weights) do we have?
+•	Now, add a bias for each neuron in the hidden layer. How many biases do we have?
+•	Repeat the process for the hidden layer to the output layer.
 
 :::::::::::::::::::::::: solution 
 
-1. Key things to look for for:
-- Loss
-    - The loss curve should drop quickly in a relatively smooth line with little to no fluctuations. 
-    - The val_loss curve should decrease along with the loss.
-- Accuracy
-    - The accuracy should increase quickly in a relatively smooth line with little to no fluctuations.
-    - The val_accuracy should behave similarly
-    
-2. The results of the training give very little information on its performance on a test set. You should be careful not to use it as an indication of a well trained network.
+(3 { neurons} x 4 { neurons} + 4{ biases}) = 16 
+(4 { neurons} x 1 { neurons} + 1{ biases}) = 5
+Total parameters for this network: (16 + 5 = 21)
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-Note the training loss continues to decrease, while the validation loss stagnates, and even starts to increase over the course of the epochs. Similarly, the accuracy for the validation set does not improve anymore after some epochs.
 
-This is evidence of **overfitting** in these plots. If a model is overfitting, it means the model performs exceptionally well on the training data, but poorly on the validation data. Overfitting occurs when the model has learned to memorize the noise and specific patterns in the training data instead of generalizing the underlying relationships. As a result, the model fails to perform well on new, unseen, data because it has become too specialized to the training set.
+#### 1. Prompt Optimization:
+To elicit specific and accurate responses from LLMs by designing prompts strategically. Zero-shot Prompting: This is the simplest form of prompting where the LLM is given a task or question without any context or examples. It relies on the LLM’s pre-existing knowledge to generate a response. Example: “What is the capital of France?” The LLM would respond with “Paris” based on its internal knowledge. Few-shot Prompting: In this technique, the LLM is provided with a few examples to demonstrate the expected response format or content. Example: To determine sentiment, you might provide examples like “I love sunny days. (+1)” and “I hate traffic. (-1)” before asking the LLM to analyze a new sentence.
 
-Key characteristics of an overfit model include:
+#### 2. Retrieval Augmented Generation (RAG):
+To supplement the LLM’s generative capabilities with information retrieved from external databases or documents. Retrieval: The LLM queries a database to find relevant information that can inform its response. Example: If asked about recent scientific discoveries, the LLM might retrieve articles or papers on the topic. Generation: After retrieving the information, the LLM integrates it into a coherent response. Example: Using the retrieved scientific articles, the LLM could generate a summary of the latest findings in a particular field.
 
-- High Training Accuracy, Low Validation Accuracy: The model achieves high accuracy on the training data but significantly lower accuracy on the validation (or test) data.
+#### 3. Fine-Tuning: 
+To adapt a general-purpose LLM to excel at a specific task or within a particular domain. Language Modeling Task Fine-Tuning: This involves training the LLM on a large corpus of text to improve its ability to predict the next word or phrase in a sentence. Example: An LLM fine-tuned on legal documents would become better at generating text that resembles legal writing. Supervised Q&A Fine-Tuning: Here, the LLM is trained on a dataset of question-answer pairs to enhance its performance on Q&A tasks.
+Example: An LLM fine-tuned with medical Q&A pairs would provide more accurate responses to health-related inquiries.
 
-- Small Training Loss, Large Validation Loss: The training loss is low, indicating the model's predictions closely match the true labels in the training set. However, the validation loss is high, indicating the model's predictions are far from the true labels in the validation set.
+#### 4.	Training from Scratch: 
+Builds a model specifically for a domain, using relevant data from the ground up.
 
-How to Address Overfitting:
 
-- Reduce the model's complexity by using fewer layers or units to make it less prone to overfitting.
-- Collect more training data if possible to provide the model with a diverse and representative dataset.
-- Perform data augmentation to artificially increase the size of the training data and introduce variability.
+::::::::::::::::::::::::::::::::::::: Discussion
 
-::::::::::::::::::::::::::::::::::::::::: spoiler
+## Discuss in groups. 
 
-## WANT TO KNOW MORE: What is underfitting?
+Which approach do you think is more computation-intensive? Which is more accurate? How are these qualities related?  Evaluate the trade-offs between fine-tuning and other approaches.
 
-Underfitting occurs when the model is too simple or lacks the capacity to capture the underlying patterns and relationships present in the data. As a result, the model's predictions are not accurate, and it fails to generalize well to unseen data.
-
-Key characteristics of an underfit model include:
-
-- Large Training Loss: The training loss (error) is high, indicating the model's predictions are far from the true labels in the training set.
-- Increasing validation loss.
-- Low Validation Accuracy: This indicates the model is not learning from the data effectively.
-
-How to address underfitting:
-
-- Perform data augmentation or feature engineering to provide the model with more informative input features.
-- Train the model for more epochs to give it more time to learn from the data.
-- Increase the model's complexity by adding more layers or units to the existing layers.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-### Improve Model Generalization (avoid Overfitting)
-
-Techniques to avoid overfitting, or to improve model generalization, are termed **regularization techniques**. 
-
-::::::::::::::::::::::::::::::::::::::::: spoiler
-
-## WANT TO KNOW MORE: Regularization techniques for CNNs
-
-ChatGPT
-
-**Regularization** methods introduce constraints or penalties to the training process, encouraging the model to be simpler and less prone to overfitting. Here are some common regularization methods for CNNs:
-
-**L1 and L2 Regularization**: L1 and L2 regularization are the two most common regularization techniques used in deep learning. They add a penalty term to the loss function during training to restrict the model's weights.
-
-- L1 regularization adds the absolute value of the weights to the loss function. It tends to produce sparse weight vectors, forcing some of the less important features to have exactly zero weights.
-
-- L2 regularization adds the square of the weights to the loss function. It encourages the model to have smaller weights overall, preventing extreme values and reducing the impact of individual features.
-
-The regularization strength is controlled by a hyperparameter, often denoted as lambda (λ), that determines how much weight should be given to the regularization term. A larger λ value increases the impact of regularization, making the model simpler and more regularized.
-
-**Dropout**: Involves randomly "dropping out" a fraction of neurons during training. This means during each training iteration, some neurons are temporarily removed from the network. Dropout effectively reduces the interdependence between neurons, preventing the network from relying too heavily on specific neurons, and making it more robust.
-
-**Batch Normalization**: While not explicitly a regularization technique, Batch Normalization has a regularizing effect on the model. It normalizes the activations of each layer in the network, reducing internal covariate shift. This can improve training stability and reduce the need for aggressive dropout or weight decay.
-
-**Data Augmentation**: Data augmentation is a technique where the training data is artificially augmented by applying various transformations like rotation, scaling, flipping, and cropping to create new examples. This increases the diversity of the training data and helps the model generalize better to unseen data.
-
-**Early Stopping**: Early stopping is a form of regularization that stops the training process when the model's performance on a validation set starts to degrade. It prevents the model from overfitting by avoiding further training after the point of best validation performance.
-
-Using regularization techniques improves the generalization performance of CNNs and reduces the risk of overfitting. It's essential to experiment with different regularization methods and hyperparameters to find the optimal combination for your specific CNN architecture and dataset.
+![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/7526be09-de4d-4c59-b6df-93f0d2dca9d7)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-#### Dropout
+::::::::::::::::::::::::::::::::::::: Discussion
 
-One of the most versatile regularization technique is **dropout** (Srivastava et al., 2014). Dropout essentially means that during each training cycle a random fraction of the dense layer nodes are turned off. This is described with the dropout rate between zero and one, which determines the fraction of nodes to silence at a time. 
+## Discuss in groups. 
 
-![](fig/04-neural_network_sketch_dropout.png){alt='diagram of two neural networks; the first network is densely connected without dropout and the second network has some of the neurons dropped out of of the network'}
+What is DSL and why are they useful for research tasks? Think of some examples of NLP tasks that require domain-specific LLMs, such as literature review, patent analysis, or material discovery. How do domain-specific LLMs improve the performance and accuracy of these tasks?
 
-The intuition behind dropout is that it enforces redundancies in the network by constantly removing different elements of a network. The model can no longer rely on individual nodes and instead must create multiple "paths". 
+![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/6e5a6a74-eaa2-430d-b5b5-8198716fb4f7)
 
-In addition, the model has to make predictions with much fewer nodes and weights (connections between the nodes). As a result, it becomes much harder for a network to memorize particular features. At first this might appear a quite drastic approach which affects the network architecture strongly. In practice, however, dropout is computationally a very elegant solution which does not affect training speed. And it frequently works very well.
 
-:::::::::::::::::::::::::::::::::::::: callout
+::::::::::::::::::::::::::::::::::::::::::::::::
 
-Dropout layers will only randomly silence nodes during training! During a predictions step, all nodes remain active (dropout is off). During training, the sample of nodes that are silenced are different for each training instance, to give all nodes a chance to observe enough training data to learn its weights.
+### 7.2.	Prompting
+
+For research applications where highly reliable answers are crucial, Prompt Engineering combined with Retrieval-Augmented Generation (RAG) is often the most suitable approach. This combination allows for flexibility and high-quality outputs by leveraging both the generative capabilities of LLMs and the precision of domain-specific data sources:
+
+```python
+Install the Hugging Face libraries
+!pip install transformers datasets
+
+from transformers import pipeline
+
+# Initialize the zero-shot classification pipeline
+classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
+
+# Example research question
+question = "What is the role of CRISPR-Cas9 in genome editing?"
+
+# Candidate topics to classify the question
+topics = ["Biology", "Technology", "Healthcare", "Genetics", "Ethics"]
+
+# Perform zero-shot classification
+result = classifier(question, candidate_labels=topics)
+
+# Output the results
+print(f"Question: {question}")
+print("Classified under topics with the following scores:")
+for label, score in zip(result['labels'], result['scores']):
+print(f"{label}: {score:.4f}")
+
+```
+
+::::::::::::::::::::::::::::::::::::::::: spoiler 
+
+## Heads-up: Be careful when fine-tuning a model
+
+When fine-tuning a BERT model from Hugging Face, for instance, it is essential to approach the process with precision and care. Begin by thoroughly understanding **BERT’s architecture** and the specific task at hand to select the most suitable model variant and hyperparameters. **Prepare your dataset** meticulously, ensuring it is clean, well-represented, and split correctly to avoid **data leakage and overfitting**. Hyperparameter selection, such as learning rates and batch sizes, should be made with consideration, and **regularization** techniques like dropout should be employed to enhance the model’s ability to generalize. **Evaluate** the model’s performance using appropriate metrics and address any class imbalances with weighted loss functions or similar strategies. Save checkpoints to preserve progress and document every step of the fine-tuning process for transparency and reproducibility. **Ethical considerations** are paramount; strive for a model that is fair and unbiased. Ensure compliance with data protection regulations, especially when handling sensitive information. Lastly, manage **computational resources** wisely and engage with the Hugging Face community for additional support. Fine-tuning is iterative, and success often comes through continuous experimentation and learning.
 
 ::::::::::::::::::::::::::::::::::::::::::::::
 
-Dropout layers are defined by the `tf.keras.layers.Dropout` class and have the following definition:
 
-```
-tf.keras.layers.Dropout(rate, noise_shape=None, seed=None, **kwargs)
-```
+::::::::::::::::::::::::::::::::::::: Discussion
 
-The `rate` parameter is a float between 0 and 1 and represents the fraction of the input units to drop.
+## Discuss in groups. 
 
-We want to add one Dropout Layer to our network that randomly drops 80 per cent of the input units but where should we put it?
+Guess the following architecture belongs to which optimization strategy:
 
-The placement of the dropout layer matters. Adding dropout before or after certain layers can have different effects. For example, it's common to place dropout after convolutional and dense layers but not typically after pooling layers. Let us add a third convolutional layer to our model and then the dropout layer.
+![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/9abb1cc9-9b10-4636-994a-ff55b017349c)
+
+Figure. LLMs optimization (source)
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: Discussion
+
+## Discuss in groups. 
+
+What are the challenges and trade-offs of domain-specific LLMs, such as data availability, model size, and complexity? Consider some of the factors that affect the quality and reliability of domain-specific LLMs, such as the amount and quality of domain-specific data, the computational resources and time required for training or fine-tuning, and the generalization and robustness of the model. How do these factors pose problems or difficulties for domain-specific LLMs and how can we overcome them?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: Discussion
+
+## Discuss in groups. 
+
+What are some available approaches for creating domain-specific LLMs, such as fine-tuning and knowledge distillation? Consider some of the main steps and techniques for creating domain-specific LLMs, such as selecting a general LLM, collecting and preparing domain-specific data, training or fine-tuning the model, and evaluating and deploying the model. How do these approaches differ from each other and what are their advantages and disadvantages?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+### Example:
+Now let’s try One-shot and Few-shot prompting examples and see how it can help us to enhance the sensitivity of the LLM to our field of study: One-shot prompting involves providing the model with a single example to follow. It’s like giving the model a hint about what you expect. We will go through an example using Hugging Face’s transformers library:
 
 ```python
-# define the inputs, layers, and outputs of a CNN model with dropout
+from transformers import pipeline
 
-# CNN Part 1
-# Input layer of 32x32 images with three channels (RGB)
-inputs_dropout = keras.Input(shape=train_images.shape[1:])
+# Load a pre-trained model and tokenizer
+model_name = "gpt2"
+generator = pipeline('text-generation', model=model_name)
 
-# CNN Part 2
-# Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
-x_dropout = keras.layers.Conv2D(16, (3, 3), activation='relu')(inputs_dropout)
-# Pooling layer with input window sized 2,2
-x_dropout = keras.layers.MaxPooling2D((2, 2))(x_dropout)
-# Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
-x_dropout = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_dropout)
-# Second Pooling layer with input window sized 2,2
-x_dropout = keras.layers.MaxPooling2D((2, 2))(x_dropout)
-# Second Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
-x_dropout = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_dropout) # This is new!
-# Dropout layer andomly drops 60 per cent of the input units
-x_dropout = keras.layers.Dropout(0.6)(x_dropout) # This is new!
-# Flatten layer to convert 2D feature maps into a 1D vector
-x_dropout = keras.layers.Flatten()(x_dropout)
-# Dense layer with 128 neurons and ReLU activation
-x_dropout = keras.layers.Dense(128, activation='relu')(x_dropout)
+# One-shot example
+prompt = "Translate 'Hello, how are you?' to French:\nBonjour, comment ça va?\nTranslate 'I am learning new things every day' to French:"
+result = generator(prompt, max_length=100)
 
-# CNN Part 3
-# Output layer with 10 units (one for each class) and softmax activation
-outputs_dropout = keras.layers.Dense(10, activation='softmax')(x_dropout)
-
-# create the dropout model
-model_dropout = keras.Model(inputs=inputs_dropout, outputs=outputs_dropout, name="cifar_model_dropout")
-
-model_dropout.summary()
+# Output the result
+print(result[0]['generated_text'])
 ```
 
-```output
-Model: "cifar_model_dropout"
-_________________________________________________________________
- Layer (type)                Output Shape              Param #   
-=================================================================
- input_2 (InputLayer)        [(None, 32, 32, 3)]       0         
-                                                                 
- conv2d_2 (Conv2D)           (None, 30, 30, 16)        448       
-                                                                 
- max_pooling2d_2 (MaxPoolin  (None, 15, 15, 16)        0         
- g2D)                                                            
-                                                                 
- conv2d_3 (Conv2D)           (None, 13, 13, 32)        4640      
-                                                                 
- max_pooling2d_3 (MaxPoolin  (None, 6, 6, 32)          0         
- g2D)                                                            
-                                                                 
- conv2d_4 (Conv2D)           (None, 4, 4, 64)          18496     
-                                                                 
- dropout (Dropout)           (None, 4, 4, 64)          0         
-                                                                 
- flatten_1 (Flatten)         (None, 1024)              0         
-                                                                 
- dense_2 (Dense)             (None, 128)               131200    
-                                                                 
- dense_3 (Dense)             (None, 10)                1290      
-                                                                 
-=================================================================
-Total params: 156074 (609.66 KB)
-Trainable params: 156074 (609.66 KB)
-Non-trainable params: 0 (0.00 Byte)
-_________________________________________________________________
+In this example, we provide the model with one translation example and then ask it to translate a new sentence. The model uses the context from the one-shot example to generate the translation. But what if we have a Few-Shot Prompting? Few-shot prompting gives the model several examples to learn from. This can improve the model’s ability to understand and complete the task. Here is how you can implement few-shot prompting:
+
+```python
+from transformers import pipeline
+
+# Load a pre-trained model and tokenizer
+model_name = "gpt2"
+generator = pipeline('text-generation', model=model_name)
+
+# Few-shot examples
+prompt = """\
+Q: What is the capital of France?
+A: Paris.
+
+Q: What is the largest mammal?
+A: Blue whale.
+
+Q: What is the human body's largest organ?
+A: The skin.
+
+Q: What is the currency of Japan?
+A:"""
+result = generator(prompt, max_length=100)
+
+# Output the result
+print(result[0]['generated_text'])
 ```
 
-Note the dropout does not alter the dimensions of the image and has zero parameters.
+In this few-shot example, we provide the model with three question-answer pairs before posing a new question. The model uses the pattern it learned from the examples to answer the new question.
+
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## CHALLENGE Does adding a Dropout Layer improve our model?
+## Challenge
 
-Write the code to compile and fit our new dropout model using the same arguments we used for our model in the introduction. Then inspect the training metrics to determine whether our model has improved or not by adding a dropout layer.
+To summarize this approach in a few steps, fill in the following gaps:
+1.	Choose a Model: Select a **---** model from Hugging Face that suits your task.
+   
+2.	Load the Model: Use the **---** function to load the model and tokenizer.
+  
+3.	Craft Your Prompt: Write a **---** that includes one or more examples, depending on whether you’re doing one-shot or few-shot prompting.
+  
+4.	Generate Text: Call the **---** with your prompt to generate the **---**.
+  
+5.	Review the Output: Check the generated text to see if the model followed the **---** correctly.
 
-:::::::::::::::::::::::: solution
 
-```python
-# compile the dropout model
-model_dropout.compile(optimizer = 'adam',
-              loss = keras.losses.CategoricalCrossentropy(),
-              metrics = ['accuracy'])
+:::::::::::::::::::::::: solution 
 
-# fit the dropout model
-history_dropout = model_dropout.fit(train_images, train_labels, 
-                                    epochs = 10,
-                                    validation_data=(val_images, val_labels),
-                                    batch_size = 32)
-
-# save dropout model
-model_dropout.save('fit_outputs/model_dropout.keras')
-
-# inspect the training results
-
-# convert the history to a dataframe for plotting 
-history_dropout_df = pd.DataFrame.from_dict(history_dropout.history)
-
-# plot the loss and accuracy from the training process
-fig, axes = plt.subplots(1, 2)
-fig.suptitle('cifar_model_dropout')
-sns.lineplot(ax=axes[0], data=history_dropout_df[['loss', 'val_loss']])
-sns.lineplot(ax=axes[1], data=history_dropout_df[['accuracy', 'val_accuracy']])
-
-val_loss_dropout, val_acc_dropout = model_dropout.evaluate(val_images, val_labels, verbose=2)
-```
-
-![](fig/04_model_dropout_accuracy_loss.png){alt='two panel figure; the figure on the left illustrates the training loss starting at 1.7 and decreasing to 1.0 and the validation loss decreasing from 1.4 to 0.9 before leveling out; the figure on the right illustrates the training accuracy increasing from 0.40 to 0.65 and the validation accuracy increasing from 0.5 to 0.67'}
-
-In this relatively uncommon situation, the training loss is higher than our validation loss while the validation accuracy is higher than the training accuracy. Using dropout, or other regularization techniques during training, can lead to a lower training accuracy.
-
-Dropout randomly "drops out" units during training, which can prevent the model from fitting the training data too closely. This regularization effect may lead to a situation where the model generalizes better on the validation set.
-
-The final accuracy on the validation set is higher than without dropout.
+1.	Choose a Model: Select a **pre-trained** model from Hugging Face that suits your task.
+   
+2.	Load the Model: Use the **pipeline** function to load the model and tokenizer.
+  
+3.	Craft Your Prompt: Write a **prompt** that includes one or more examples, depending on whether you’re doing one-shot or few-shot prompting.
+  
+4.	Generate Text: Call the **generator** with your prompt to generate the **output**.
+  
+5.	Review the Output: Check the generated text to see if the model followed the **examples** correctly.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Choose the best model and use it to predict
 
-Based on our evaluation of the loss and accuracy metrics, the `model_dropout` appears to have the best performance **of the models we have examined thus far**. The next step is to use this model to predict the object classes on our test dataset.
+::::::::::::::::::::::::::::::::::::::::: spoiler 
+
+## Heads-up: Prompting Quality
+
+Remember, the quality of the output heavily depends on the quality and relevance of the examples you provide. It’s also important to note that larger models tend to perform better at these tasks due to their greater capacity to understand and generalize from examples.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Use Model.compile() to compile a CNN.
-- The choice of loss function will depend on your data and aim.
-- The choice of optimizer often depends on experimentation and empirical evaluation.
-- Use Model.fit() to make a train (fit) a CNN.
-- Training/validation loss and accuracy can be used to evaluate a model during training.
-- Dropout is one way to prevent overfitting.
+- Domain-specific LLMs are essential for tasks that require specialized knowledge.
+- Prompt engineering, RAG, fine-tuning, and training from scratch are viable approaches to create DSLs.
+- A mixed prompting-RAG approach is often preferred for its balance between performance and resource efficiency.
+- Training from scratch offers the highest quality output but requires significant resources.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 <!-- Collect your link references at the bottom of your document -->
 
-[loss documentation]: https://keras.io/api/losses/
-[optimizer documentation]: https://keras.io/api/optimizers/
-[metrics]: https://keras.io/api/metrics/
-[fit method]: https://keras.io/api/models/model_training_apis/
-[Google Developers Machine Learning Crash Course]: https://developers.google.com/machine-learning/crash-course/reducing-loss/learning-rate
-[Creative Commons 4.0 Attribution Licence]: https://creativecommons.org/licenses/by/4.0/
+[RMSprop in Keras]: https://keras.io/api/optimizers/rmsprop/
+[RMSProp, Cornell University]: https://optimization.cbe.cornell.edu/index.php?title=RMSProp
