@@ -32,27 +32,17 @@ We have discussed how tokenization works and how it is important in text analysi
 ![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/38e4c636-1bd9-46c9-a7f9-9522f1cadad7)
 
 
-::::::::::::::::::::::::::::::::::::: Activity
+::::::::::::::::::::::::::::::::::::: Discussion
 
-Now let’s move the following text boxes toward their right places in the ANN architecture and add the correct label to each one:
+## Discuss in groups. 
+How tokenization affects the representation of text in vector space models. Consider the impact of ignoring common words (stop words) and the importance of word order.
 
 ![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/01097431-d114-48ce-9de5-552cb0c9596f)
 
 
-When we talk about ANNs, we also talk about their parameters. But what are parameters? Let’s draw a small neural network with 3 following layers: x1
-Input Layer: 3 neurons
-Hidden Layer: 4 neurons
-Output Layer: 1 neurons
-
-•	Connect each neuron in the input layer to every neuron in the hidden layer (next layer). How many connections (weights) do we have?
-•	Now, add a bias for each neuron in the hidden layer. How many biases do we have?
-•	Repeat the process for the hidden layer to the output layer.
 
 :::::::::::::::::::::::: solution 
 
-(3 { neurons} x 4 { neurons} + 4{ biases}) = 16 
-(4 { neurons} x 1 { neurons} + 1{ biases}) = 5
-Total parameters for this network: (16 + 5 = 21)
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
