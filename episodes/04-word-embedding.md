@@ -6,25 +6,23 @@ exercises: 2
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How do you compile a convolutional neural network (CNN)?
-- What is a loss function?
-- What is an optimizer?
-- How do you train (fit) a CNN?
-- How do you evaluate a model during training?
-- What is overfitting?
+•	What is a vector space in the context of NLP?
+•	How can I visualize vector space in a 2D model?
+•	How can I use embeddings and how do embeddings capture the meaning of words?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain the difference between compiling and training (fitting) a CNN.
-- Know how to select a loss function for your model.
-- Understand what an optimizer is.
-- Define the terms: learning rate, batch size, epoch.
-- Understand what loss and accuracy are and how to monitor them during training.
-- Explain what overfitting is and what to do about it.
+•	Be able to explain vector space and how it is related to text analysis.
+•	Identify the tools required for text embeddings.
+•	To explore the Word2Vec algorithm and its advantages over traditional models.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
+![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/b7dc9493-912f-43f4-9485-a716e1cca516)
+
+
 
 ### Step 5. Choose a loss function and optimizer and compile model
 
