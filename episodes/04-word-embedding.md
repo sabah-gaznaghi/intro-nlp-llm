@@ -23,8 +23,6 @@ exercises: 2
 ![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/b7dc9493-912f-43f4-9485-a716e1cca516)
 
 
-
-
 ### 5.1.	Introduction to Artificial Neural Networks
 
 We have discussed how tokenization works and how it is important in text analysis. For making robust and reliable NLP models we need to extract features from the text by using text embeddings. To understand this concept, we first talk about vector space. Vector space models represent text data as vectors, which can be used in various machine learning algorithms. Embeddings are dense vectors that capture the semantic meanings of words based on their context. 
@@ -94,7 +92,7 @@ Install the Hugging Face libraries
 from transformers import pipeline
 
 # Initialize the zero-shot classification pipeline
-classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
+classifier = pipeline("zero-shot-classification", model = "facebook/bart-large-mnli")
 
 # Example research question
 question = "What is the role of CRISPR-Cas9 in genome editing?"
