@@ -2,7 +2,7 @@
 title: "Summary and Setup"
 ---
 
-This lesson is a hands-on workshop on introduction to NLP for research, leveraging the power of Google Colab for an interactive coding experience. Over one full day or two half-days, we will dive into the core concepts and cutting-edge techniques that empower machines to interpret human language and unlock its application in different research fields. This workshop is intended for Carpentries Instructors and learners who have a foundational grasp of Python and are interested in applying NLP in various domains. It is ideal for those looking to enhance their research, develop tools, or gain a deeper understanding of language processing technologies.
+This workshop offers a hands-on introduction to Natural Language Processing (NLP) for research, utilizing the power of Google Colab for an interactive coding experience. Spanning one full day or two half-days, participants will explore the fundamental concepts and state-of-the-art techniques that enable machines to understand human language, opening up its applications across various research domains. Designed for Software Carpentry learners with a basic understanding of Python, this workshop is perfect for those eager to apply NLP in diverse fields. It’s an excellent opportunity for researchers seeking to augment their work, develop innovative tools, or deepen their comprehension of language processing technologies.
 
 
 We emphasize collaborative learning and encourage participants to engage with peers throughout the workshop. Activities are designed for group interaction, but individual learners will also find the content enriching and manageable.
