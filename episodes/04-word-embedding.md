@@ -44,11 +44,13 @@ We have discussed how tokenization works and how it is important in text analysi
 ## Discuss in groups. 
 Discuss how tokenization affects the representation of text in vector space models. Consider the impact of ignoring common words (stop words) and the importance of word order.
 
-![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/01097431-d114-48ce-9de5-552cb0c9596f)
-
 
 
 :::::::::::::::::::::::: solution 
+
+![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/0f7f3389-7102-4aec-ae36-6b5bf7b73a7b)
+[source](https://medium.com/@saschametzger/what-are-tokens-vectors-and-embeddings-how-do-you-create-them-e2a3e698e037)
+
 Tokenization is a fundamental step in the processing of text for vector space models. It involves breaking down a string of text into individual units, or “tokens,” which typically represent words or phrases. Here’s how tokenization impacts the representation of text in vector space models:
 
 - *Granularity*: Tokenization determines the granularity of text representation. Finer granularity (e.g., splitting on punctuation) can capture more nuances but may increase the dimensionality of the vector space.
