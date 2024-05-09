@@ -1,29 +1,38 @@
 ---
 title: 'Word Embedding'
 teaching: 10
-exercises: 2
+exercises: 6
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-•	What is a vector space in the context of NLP?
-•	How can I visualize vector space in a 2D model?
-•	How can I use embeddings and how do embeddings capture the meaning of words?
+- What is a vector space in the context of NLP?
+- How can I visualize vector space in a 2D model?
+- How can I use embeddings and how do embeddings capture the meaning of words?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-•	Be able to explain vector space and how it is related to text analysis.
-•	Identify the tools required for text embeddings.
-•	To explore the Word2Vec algorithm and its advantages over traditional models.
+- Be able to explain vector space and how it is related to text analysis.
+- Identify the tools required for text embeddings.
+- To explore the Word2Vec algorithm and its advantages over traditional models.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: keypoints 
+
+- Tokenization is crucial for converting text into a format usable by machine learning models.
+- BoW and TF-IDF are fundamental techniques for feature extraction in NLP.
+- Word2Vec and GloVE generate embeddings that encapsulate word meanings based on context and co-occurrence, respectively.
+- Understanding these concepts is essential for building effective NLP models that can interpret and process human language.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/b7dc9493-912f-43f4-9485-a716e1cca516)
 
 
-### 5.1.	Introduction to Artificial Neural Networks
+## 4.1.	Introduction to Vector Space & Embeddings:
 
 We have discussed how tokenization works and how it is important in text analysis. For making robust and reliable NLP models we need to extract features from the text by using text embeddings. To understand this concept, we first talk about vector space. Vector space models represent text data as vectors, which can be used in various machine learning algorithms. Embeddings are dense vectors that capture the semantic meanings of words based on their context. 
 
@@ -33,14 +42,31 @@ We have discussed how tokenization works and how it is important in text analysi
 ::::::::::::::::::::::::::::::::::::: Discussion
 
 ## Discuss in groups. 
-How tokenization affects the representation of text in vector space models. Consider the impact of ignoring common words (stop words) and the importance of word order.
+Discuss how tokenization affects the representation of text in vector space models. Consider the impact of ignoring common words (stop words) and the importance of word order.
 
 ![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/01097431-d114-48ce-9de5-552cb0c9596f)
 
 
 
 :::::::::::::::::::::::: solution 
+Tokenization is a fundamental step in the processing of text for vector space models. It involves breaking down a string of text into individual units, or “tokens,” which typically represent words or phrases. Here’s how tokenization impacts the representation of text in vector space models:
 
+- *Granularity*: Tokenization determines the granularity of text representation. Finer granularity (e.g., splitting on punctuation) can capture more nuances but may increase the dimensionality of the vector space.
+- *Dimensionality*: Each unique token becomes a dimension in the vector space. The choice of tokenization can significantly affect the number of dimensions, with potential implications for computational efficiency and the “curse of dimensionality.”
+- *Semantic Meaning*: Proper tokenization ensures that semantically significant units are captured as tokens, which is crucial for the model to understand the meaning of the text.
+
+Ignoring common words, or “stop words,” can also have a significant impact:
+
+*Noise Reduction*: Stop words are often filtered out to reduce noise since they usually don’t carry important meaning and are highly frequent (e.g., “the,” “is,” “at”).
+*Focus on Content Words*: By removing stop words, the model can focus on content words that carry the core semantic meaning, potentially improving the performance of tasks like information retrieval or topic modeling.
+*Computational Efficiency*: Ignoring stop words reduces the dimensionality of the vector space, which can make computations more efficient.
+
+The importance of word order is another critical aspect:
+
+*Contextual Meaning*: Word order is essential for capturing the syntactic structure and meaning of a sentence. Traditional bag-of-words models ignore word order, which can lead to a loss of contextual meaning.
+*Phrase Identification*: Preserving word order allows for the identification of multi-word expressions and phrases that have distinct meanings from their constituent words.
+*Word Embeddings*: Advanced models like word embeddings (e.g., Word2Vec) and contextual embeddings (e.g., BERT) can capture word order to some extent, leading to a more nuanced understanding of text semantics.
+In summary, tokenization, the treatment of stop words, and the consideration of word order are all crucial factors that influence how text is represented in vector space models, affecting both the quality of the representation and the performance of downstream tasks.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -237,15 +263,6 @@ Remember, the quality of the output heavily depends on the quality and relevance
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-
-::::::::::::::::::::::::::::::::::::: keypoints 
-
-- Domain-specific LLMs are essential for tasks that require specialized knowledge.
-- Prompt engineering, RAG, fine-tuning, and training from scratch are viable approaches to create DSLs.
-- A mixed prompting-RAG approach is often preferred for its balance between performance and resource efficiency.
-- Training from scratch offers the highest quality output but requires significant resources.
-
-::::::::::::::::::::::::::::::::::::::::::::::::
 
 <!-- Collect your link references at the bottom of your document -->
 
