@@ -46,7 +46,7 @@ Google Colab provides a free cloud-based Python environment that facilitates cod
 1. **Create a Google Account**: If you do not already have a Google account, sign up at *accounts.google.com*.
 2. Access Google Colab: Visit *colab.research.google.com* and sign in with your Google account.
 3. Familiarize Yourself with Colab Notebooks Colab notebooks are just like Jupyter notebooks.
-4. If you are new to Colab, check out Colab’s introductory guide: [Welcome to Colaboratory!](https://colab.google/)
+4. If you are new to Colab, check out Colab’s introductory guide: [Google Colaboratory](https://colab.google/)
 5. Set Up Your Workspace:
     **a. Create a new notebook via ‘File’ > ‘New notebook’.**
     **b. Rename your notebook to reflect the workshop content, e.g., ‘Introduction_to_NLP_Workshop’.**
@@ -101,7 +101,50 @@ Click on the link and select the file
 
 ::::::::::::::::::::::::::::::::::
 
-10. **Save Your Work**: Colab auto-saves your notebooks to Google Drive, but you can also save a copy via ‘File’ > ‘Save a copy in Drive’.
+10. **Changing Hardware Accelerator**:
+  In Google Colab, hardware accelerators are dedicated processors that boost computational efficiency, facilitating faster execution of operations such as machine learning model training, intricate simulations, and large-scale data analysis. To learn more about the available free hardware and runtimes check out this [link](https://research.google.com/colaboratory/faq.html#gpu-availability). We can change the accelerator through the following steps:
+:::::::::::::::::::::::: solution
+
+### Selecting the Hardware
+
+
+```
+Click on the Runtime menu.
+```
+![Screenshot 2024-05-09 130142](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/bc1c5418-b288-4546-886d-f9997fae55c1)
+
+
+```
+Select Change Runtime Type.
+```
+
+```
+Choose GPU from the dropdown menu and click Save.
+```
+
+![Screenshot 2024-05-09 130334](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/350184e1-577c-45f2-882e-9bed0c22f7c2)
+
+![Screenshot 2024-05-09 130443](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/c6ad197c-1641-4c89-8464-20dc268722f0)
+
+```
+You can get to the same setting window through the Runtime small icon on the top right side of the screen.
+```
+![Screenshot 2024-05-09 130632](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/419259c2-a070-4fbd-8e10-900e48d861e6)
+
+
+::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::: callout
+
+Please note that these are free resources and we do not have to pay for using them. However, if you are using a paid Colab plan, you can also access premium GPUs like the V100 or A100 by upgrading your notebook’s GPU settings in the Runtime > Change runtime type menu. Additionally, paid plans provide access to high-memory virtual machines and longer runtimes. 
+
+:::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
+
+
+12. **Save Your Work**: Colab auto-saves your notebooks to Google Drive, but you can also save a copy via ‘File’ > ‘Save a copy in Drive’.
 
 
 
