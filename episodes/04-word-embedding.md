@@ -307,6 +307,3 @@ Remember, the quality of the output heavily depends on the quality and relevance
 
 
 <!-- Collect your link references at the bottom of your document -->
-
-[RMSprop in Keras]: https://keras.io/api/optimizers/rmsprop/
-[RMSProp, Cornell University]: https://optimization.cbe.cornell.edu/index.php?title=RMSProp

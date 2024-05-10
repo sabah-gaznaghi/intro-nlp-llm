@@ -190,5 +190,3 @@ Your feedback is crucial for us to evolve and enhance the learning experience.
 •	Valuable resources are highlighted for continued learning and exploration in the field of NLP.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
-<!-- Collect your link references at the bottom of your document -->
