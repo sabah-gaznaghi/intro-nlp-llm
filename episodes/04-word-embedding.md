@@ -73,9 +73,49 @@ In summary, tokenization, the treatment of stop words, and the consideration of 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+::: callout
 
-#### 1. Prompt Optimization:
-To elicit specific and accurate responses from LLMs by designing prompts strategically. Zero-shot Prompting: This is the simplest form of prompting where the LLM is given a task or question without any context or examples. It relies on the LLM’s pre-existing knowledge to generate a response. Example: “What is the capital of France?” The LLM would respond with “Paris” based on its internal knowledge. Few-shot Prompting: In this technique, the LLM is provided with a few examples to demonstrate the expected response format or content. Example: To determine sentiment, you might provide examples like “I love sunny days. (+1)” and “I hate traffic. (-1)” before asking the LLM to analyze a new sentence.
+## Tokenization Vs. Embeddings
+In natural language processing, tokens are transformed into vectors that numerically capture their meanings and relationships within a vocabulary. Initially random, these vectors are refined during training, akin to neural network weights, to better reflect token meanings and associations. This process, known as “embedding,” allows a model to intuitively understand word relationships without explicit programming. Visualizing embeddings reveals a semantic map where tokens cluster with those of similar meanings, illustrating the interconnectedness of language elements.
+
+:::
+
+
+## 4.2. Bag of Words & TF-IDF:
+Feature extraction in machine learning involves creating numerical features that describe a document’s relationship to its corpus. Traditional methods like Bag-of-Words and TF-IDF count words or n-grams, with the latter assigning weights based on a word’s importance, calculated by Term Frequency (TF) and Inverse Document Frequency (IDF). TF measures a word’s importance within a document, while IDF assesses its rarity across the corpus. The product of TF and IDF gives the TF-IDF score, which balances a word’s frequency in a document against its commonness in the corpus. This approach helps to highlight significant words while diminishing the impact of commonly used words like “the” or “a.” 
+
+![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/857c6ae4-8a80-4dc2-9da8-ced57bb058d5)
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Discussion
+
+Teamwork: Analyze a corpus of product reviews using both BoW and TF-IDF. Discuss how each method represents the importance of words and the potential impact on sentiment analysis.
+
+:::::::::::::::: solution
+
+A: To compare the Bag of Words (BoW) and Term Frequency-Inverse Document Frequency (TF-IDF) methods in representing text data and their implications for sentiment analysis.
+Data Collection: Gather a corpus of product reviews. For this activity, let’s assume we have a list of reviews stored in a variable called reviews. Clean the text data by removing punctuation, converting to lowercase, and possibly removing stop words. Use a vectorizer to convert the reviews into a BoW representation.
+Discuss how BoW represents the frequency of words without considering the context or rarity across documents. Use a vectorizer to convert the same reviews into a TF-IDF representation. Discuss how TF-IDF represents the importance of words by considering both the term frequency and how unique the word is across all documents.
+
+:::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Discussion
+
+Teamwork: Analyze a corpus of product reviews using both BoW and TF-IDF. Discuss how each method represents the importance of words and the potential impact on sentiment analysis.
+
+:::::::::::::::: solution
+
+A: To compare the Bag of Words (BoW) and Term Frequency-Inverse Document Frequency (TF-IDF) methods in representing text data and their implications for sentiment analysis.
+Data Collection: Gather a corpus of product reviews. For this activity, let’s assume we have a list of reviews stored in a variable called reviews. Clean the text data by removing punctuation, converting to lowercase, and possibly removing stop words. Use a vectorizer to convert the reviews into a BoW representation.
+Discuss how BoW represents the frequency of words without considering the context or rarity across documents. Use a vectorizer to convert the same reviews into a TF-IDF representation. Discuss how TF-IDF represents the importance of words by considering both the term frequency and how unique the word is across all documents.
+
+:::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::
+
 
 #### 2. Retrieval Augmented Generation (RAG):
 To supplement the LLM’s generative capabilities with information retrieved from external databases or documents. Retrieval: The LLM queries a database to find relevant information that can inform its response. Example: If asked about recent scientific discoveries, the LLM might retrieve articles or papers on the topic. Generation: After retrieving the information, the LLM integrates it into a coherent response. Example: Using the retrieved scientific articles, the LLM could generate a summary of the latest findings in a particular field.
