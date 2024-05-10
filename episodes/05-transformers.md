@@ -20,38 +20,53 @@ exercises: 2
 
 Transformers have revolutionized the field of NLP since their introduction by Google team in 2017. Unlike previous models that processed text sequentially, Transformers use an attention mechanism to process all words at once, allowing them to capture context more effectively. This parallel processing capability enables Transformers to handle long-range dependencies and understand the nuances of language better than their predecessors.
 
-![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/c6b4d726-7cfc-4545-b9cc-c045f55f2ce6)
+![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/ee5efb1f-cb98-471d-993f-f7d3c5686cf0)
 
 
 
-### 5.1.	Introduction to Artificial Neural Networks
+
+## 5.1. Introduction to Artificial Neural Networks
 
 To understand how Transformers work we also need to learn about artificial neural networks (ANNs). Imagine a neural network as a team of workers in a factory. Each worker (neuron) has a specific task (processing information), and they pass their work along to the next person in line until the final product (output) is created. Just like a well-organized assembly line, a neural network processes information in stages, with each neuron contributing to the final result. 
 
-::::::::::::::::::::::::::::::::::::: Activity
 
-Now let’s move the following text boxes toward their right places in the ANN architecture and add the correct label to each one:
+::: callout
+
+### Summation and Activation Function
+If we zoom into a neuron in the hidden layer, we can see the mathematical operations (weights summation and activation function). an input is transformed at each hidden layer node through a process that multiplies the input by learned weights, adds a bias, and then applies an activation function to determine the node’s output. This output is either passed on to the next layer or contributes to the final output of the network. Essentially, each node performs a small calculation that, when combined with the operations of other nodes, allows the network to process complex patterns and data. 
+
+![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/26854a2a-3743-4dd2-a1b3-3329f1c6990d)
+
+:::
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Discussion
+
+Let’s move the following text boxes toward their right places in the ANN architecture and add the correct label to each one:
 
 ![image](https://github.com/sabah-gaznaghi/intro-nlp-llm/assets/45458783/01097431-d114-48ce-9de5-552cb0c9596f)
 
 
 When we talk about ANNs, we also talk about their parameters. But what are parameters? Let’s draw a small neural network with 3 following layers: x1
-Input Layer: 3 neurons
-Hidden Layer: 4 neurons
-Output Layer: 1 neurons
 
-•	Connect each neuron in the input layer to every neuron in the hidden layer (next layer). How many connections (weights) do we have?
-•	Now, add a bias for each neuron in the hidden layer. How many biases do we have?
-•	Repeat the process for the hidden layer to the output layer.
+- Input Layer: 3 neurons
+- Hidden Layer: 4 neurons
+- Output Layer: 1 neurons
+
+1. Connect each neuron in the input layer to every neuron in the hidden layer (next layer). How many connections (weights) do we have?
+2. Now, add a bias for each neuron in the hidden layer. How many biases do we have?
+3. Repeat the process for the hidden layer to the output layer.
 
 :::::::::::::::::::::::: solution 
 
-(3 { neurons} x 4 { neurons} + 4{ biases}) = 16 
-(4 { neurons} x 1 { neurons} + 1{ biases}) = 5
-Total parameters for this network: (16 + 5 = 21)
+- (3 { neurons} x 4 { neurons} + 4{ biases}) = 16 
+- (4 { neurons} x 1 { neurons} + 1{ biases}) = 5
+- Total parameters for this network: (16 + 5 = 21)
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 
 #### 1. Prompt Optimization:
