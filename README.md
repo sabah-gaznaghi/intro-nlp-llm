@@ -1,21 +1,7 @@
 # Introduction to Natural Language Processing for Research
-This repository generates the corresponding lesson website from The Software Carpentry repertoire of lessons.
 
+The content from this repository has been moved to a new location, which you can find here:
 
-### Contributing
+repo: https://github.com/qcif-training/intro_nlp_lmm_v1.0
 
-
-
-
-
-### Maintainer
-The maintainers of this lesson are:
-- Sabah Gaznaghi
-- 
-
-### Authors
-- Sabah Gaznaghi
-- 
-
-### Citation
-Please cite this lesson
+website: https://qcif-training.github.io/intro_nlp_lmm_v1.0/index.html
